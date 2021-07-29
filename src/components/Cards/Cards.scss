@@ -1,0 +1,11 @@
+.Cards {
+  margin: 3rem auto;
+  width: calc(100% - 40px);
+  max-width: 1440px;
+  color: green;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}

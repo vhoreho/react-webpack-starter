@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const {extendDefaultPlugins} = require('svgo')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isDev = !isProd
@@ -53,7 +55,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "React & Webpack App",
+            title: "React.Components",
             template: "./src/index.html",
             minify: {
                 removeComments: isProd,
@@ -64,5 +66,31 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: filename('css')
         }),
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                plugins: [
+                    ["gifsicle", {interlaced: true}],
+                    ["jpegtran", { progressive: true }],
+                    ["optipng", { optimizationLevel: 5 }],
+                    [
+                        "svgo",
+                        {
+                            plugins: extendDefaultPlugins([
+                                {
+                                    name: 'removeViewBox',
+                                    active: false
+                                },
+                                {
+                                    name: 'addAttributesToSVGElement',
+                                    params: {
+                                        attributes: [{xmlns: 'http://www.w3.org/2000/svg'}]
+                                    }
+                                }
+                            ])
+                        }
+                    ]
+                ]
+            }
+        })
     ]
 }

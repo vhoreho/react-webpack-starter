@@ -3,12 +3,13 @@
       "outDir": "./dist/",
       "noImplicitAny": true,
       "module": "es6",
-    "target": "es5",
-    "sourceMap": true,
+      "target": "es5",
+      "sourceMap": true,
       "jsx": "react",
       "allowJs": true,
       "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
+      "allowSyntheticDefaultImports": true,
+      "typeRoots": ["node_modules/@types", "src/types"]
   },
   "exclude": [
     "node_modules"

@@ -1,8 +1,16 @@
 import React from 'react';
-import '../styles/main.scss'
+import '../styles/main.scss';
 
-const App: React.FC = ({ children }) => {
-  return <h1>Hello React {children}</h1>;
+import SearchBar from './SearchBar/SearchBar';
+import Cards from './Cards/Cards';
+
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <SearchBar />
+      <Cards />
+    </div>
+  );
 };
 
 export default App;
